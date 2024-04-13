@@ -24,3 +24,13 @@
     background-repeat: no-repeat;
 }
 
+
+.objeto-adicional {
+    position: absolute;
+    width: 50px; /* Ajuste conforme necessário */
+    height: 50px; /* Ajuste conforme necessário */
+    background-image: url('https://media.giphy.com/media/l41lUjUgLLwWrz20w/giphy.gif');
+    background-size: cover;
+    cursor: pointer; /* Torna o cursor em um ponteiro ao passar o mouse */
+}
+

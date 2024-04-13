@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var larguraTela = window.innerWidth - 90;
     var alturaTela = window.innerHeight - 95;
-    var raio = 1;
+    var raio = 2;
     var posX = larguraTela / 2;
     var posY = raio; // Começa do topo da tela
     var velocidadeX = 1;
@@ -77,5 +77,27 @@ document.addEventListener('DOMContentLoaded', function() {
         emMovimento = !emMovimento; // Inverte o estado de movimento
     });
 
+    // Criar emojis adicionais
+    criarObjetos();
+
+    function criarObjetos() {
+        var numObjetos = 5; // Número de emojis adicionais
+
+        for (var i = 0; i < numObjetos; i++) {
+            var objetoAdicional = document.createElement('div');
+            objetoAdicional.className = 'objeto-adicional'; // Classe para estilização
+            document.body.appendChild(objetoAdicional);
+
+            // Definir posição aleatória
+            var posX = Math.random() * larguraTela;
+            var posY = Math.random() * alturaTela;
+
+            // Aplicar posição
+            objetoAdicional.style.left = posX + 'px';
+            objetoAdicional.style.top = posY + 'px';
+        }
+    }
+
+    // Função para atualizar a posição do objeto principal
     setInterval(atualizarPosicao, 5); // Ajuste o intervalo conforme necessário
 });
