@@ -15,8 +15,8 @@
  */
 
 #objeto {
-    width: 65px; /* Defina o tamanho do GIF */
-    height: 65px; /* Defina o tamanho do GIF */
+    width: 55px; /* Defina o tamanho do GIF */
+    height: 55px; /* Defina o tamanho do GIF */
     position: absolute;
     background-image: url('https://media.giphy.com/media/hof5uMY0nBwxyjY9S2/giphy.gif');
     /*background-image: url('https://media.giphy.com/media/l41lUjUgLLwWrz20w/giphy.gif'); */
@@ -37,11 +37,28 @@
 }
 
 .asteroide {
-    width: 190px;
-    height: 190px;
+    width: 145px;
+    height: 145px;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
 }
+
+
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+}
+
+.pontuacao {
+    font-family: 'Press Start 2P', sans-serif;
+    color: yellow; /* Define a cor do texto como amarelo */
+    background-color: #080863; /* Define o fundo como preto */
+    border: 2px solid red; /* Adiciona uma borda vermelha */
+    padding: 5px; /* Adiciona um preenchimento interno para dar espaço ao texto */
+    font-size: 18px; /* Define o tamanho da fonte como 18 pixels */
+}
+
 
 

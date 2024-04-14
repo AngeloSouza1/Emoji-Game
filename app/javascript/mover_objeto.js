@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Loop para criar os asteroides
-        for (var j = 0; j < 4; j++) {
+        for (var j = 0; j < 5; j++) {
             var asteroide = document.createElement('div');
             asteroide.className = 'asteroide'; // Classe para estilização
             asteroide.style.backgroundImage = 'url(' + asteroidGif + ')';
@@ -177,8 +177,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function atualizarPontuacao() {
-        pontuacaoElemento.textContent = "Pontuação: " + pontuacao;
+        pontuacaoElemento.textContent = "Pontos: " + pontuacao;
+        pontuacaoElemento.className = 'pontuacao'; // Aplicando a classe "pontuacao"
     }
+
 
     // Criar o elemento de pontuação
     var pontuacaoElemento = document.createElement('div');
