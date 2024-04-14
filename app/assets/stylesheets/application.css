@@ -15,8 +15,8 @@
  */
 
 #objeto {
-    width: 90px; /* Defina o tamanho do GIF */
-    height: 90px; /* Defina o tamanho do GIF */
+    width: 65px; /* Defina o tamanho do GIF */
+    height: 65px; /* Defina o tamanho do GIF */
     position: absolute;
     background-image: url('https://media.giphy.com/media/hof5uMY0nBwxyjY9S2/giphy.gif');
     /*background-image: url('https://media.giphy.com/media/l41lUjUgLLwWrz20w/giphy.gif'); */
@@ -29,8 +29,19 @@
     position: absolute;
     width: 50px; /* Ajuste conforme necessário */
     height: 50px; /* Ajuste conforme necessário */
-    background-image: url('https://media.giphy.com/media/l41lUjUgLLwWrz20w/giphy.gif');
+    /*background-image: url('https://www.imagensanimadas.com/data/media/280/estrela-imagem-animada-0103.gif');*/
+    background-image: url('https://www.imagensanimadas.com/data/media/280/estrela-imagem-animada-0017.gif');
     background-size: cover;
     cursor: pointer; /* Torna o cursor em um ponteiro ao passar o mouse */
+    background-color: transparent; /* Remove o fundo branco */
 }
+
+.asteroide {
+    width: 190px;
+    height: 190px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
 
