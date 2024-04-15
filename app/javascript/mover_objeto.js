@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var objeto = document.getElementById('objeto');
     var emMovimento = true; // Variável para controlar o movimento do objeto
     var raioObjeto = 15; // Raio do objeto principal
-    var velocidadeX = 2; // Velocidade de movimento horizontal
-    var velocidadeY = 2; // Velocidade de movimento vertical
+    var velocidadeX = 1.6; // Velocidade de movimento horizontal
+    var velocidadeY = 1.6; // Velocidade de movimento vertical
     var larguraTela = window.innerWidth - 90;
     var alturaTela = window.innerHeight - 95;
     var gifUrls = [
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 objetoTopo <= asteroideFundo
             ) {
                 var angulo = Math.atan2(posY - posAsteroideY, posX - posAsteroideX);
-                velocidadeX = Math.cos(angulo) * 2;
-                velocidadeY = Math.sin(angulo) * 2;
+                velocidadeX = Math.cos(angulo) * 1.6;
+                velocidadeY = Math.sin(angulo) * 1.6;
                 pausarPrincipal();
                 objeto.style.backgroundImage = 'url(https://media.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif)';
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     objeto.style.border = 'none'; // Remove a borda amarela após o tempo de pausa
                 }, tempoPausa);
                 colisoesAsteroides++; // Incrementa o número de colisões com asteroides
-                pontuacao -= 3; // Subtrai 3 pontos da pontuação
+                pontuacao -= 1; // Subtrai 1 pontos da pontuação
                 atualizarPontuacao(); // Atualiza a pontuação
                 break; // Sai do loop após encontrar a primeira colisão com asteroide
             }
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Loop para criar os asteroides
-        for (var j = 0; j < 1; j++) {
+        for (var j = 0; j < 3; j++) {
             var asteroide = document.createElement('div');
             asteroide.className = 'asteroide'; // Classe para estilização
             asteroide.style.backgroundImage = 'url(' + asteroidGif + ')';
