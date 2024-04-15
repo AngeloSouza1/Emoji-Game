@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var tempoPausa = 2000; // Tempo de pausa em milissegundos
     var colisoesAsteroides = 0; // Variável para armazenar o número de colisões com asteroides
     var colisoesObjetoAdicional = 0; // Variável para armazenar o número de colisões com objetos adicionais
-    var raioAsteroide = 25; // Raio do asteroide
+    var raioAsteroide = 20; // Raio do asteroide
     var raioObjetoAdicional = 10; // Raio do objeto adicional
     var pontuacao = 0; // Pontuação inicial
 
@@ -104,8 +104,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 velocidadeY = Math.sin(angulo) * 0.9;
                 pausarPrincipal();
                 objeto.style.backgroundImage = 'url(https://media.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif)';
+                objeto.style.border = '2px solid red'; // Adiciona uma borda amarela ao GIF
+                // Adiciona efeito piscante ao fundo do GIF
+                var count = 0;
+                var blinkingInterval = setInterval(function() {
+                    if (count % 2 === 0) {
+                        objeto.style.backgroundColor = 'rgba(255, 255, 0, 0.5)'; // Amarelo claro com opacidade
+                    } else {
+                        objeto.style.backgroundColor = 'transparent'; // Transparente
+                    }
+                    count++;
+                    if (count === 6) {
+                        clearInterval(blinkingInterval); // Para o efeito após 6 ciclos de piscadas
+                    }
+                }, 500); // Intervalo de 500 milissegundos
                 setTimeout(function() {
                     objeto.style.backgroundImage = 'url(' + gifInicial + ')';
+                    objeto.style.border = 'none'; // Remove a borda amarela após o tempo de pausa
                 }, tempoPausa);
                 colisoesAsteroides++; // Incrementa o número de colisões com asteroides
                 pontuacao -= 3; // Subtrai 3 pontos da pontuação
@@ -114,6 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+
+
 
     function verificarColisaoObjetoAdicional() {
         var objetosAdicionais = document.getElementsByClassName('objeto-adicional');
@@ -145,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para criar os objetos adicionais e os asteroides
     function criarObjetos() {
         // Loop para criar os emojis adicionais
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 20; i++) {
             var objetoAdicional = document.createElement('div');
             objetoAdicional.className = 'objeto-adicional'; // Classe para estilização
             document.body.appendChild(objetoAdicional);
@@ -179,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function atualizarPontuacao() {
         pontuacaoElemento.textContent = "Pontos: " + pontuacao;
         pontuacaoElemento.className = 'pontuacao'; // Aplicando a classe "pontuacao"
+
     }
 
 

@@ -29,7 +29,6 @@
     position: absolute;
     width: 50px; /* Ajuste conforme necessário */
     height: 50px; /* Ajuste conforme necessário */
-    /*background-image: url('https://www.imagensanimadas.com/data/media/280/estrela-imagem-animada-0103.gif');*/
     background-image: url('https://www.imagensanimadas.com/data/media/280/estrela-imagem-animada-0017.gif');
     background-size: cover;
     cursor: pointer; /* Torna o cursor em um ponteiro ao passar o mouse */
@@ -51,13 +50,21 @@
     src: url('fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
 }
 
+
 .pontuacao {
     font-family: 'Press Start 2P', sans-serif;
     color: yellow; /* Define a cor do texto como amarelo */
-    background-color: #080863; /* Define o fundo como preto */
+    background-color: rgba(1, 6, 40, 0.97); /* Define o fundo como preto */
     border: 2px solid red; /* Adiciona uma borda vermelha */
     padding: 5px; /* Adiciona um preenchimento interno para dar espaço ao texto */
     font-size: 18px; /* Define o tamanho da fonte como 18 pixels */
+
+    /* Adiciona um GIF de estrela como plano de fundo */
+    background-image: url('https://www.imagensanimadas.com/data/media/280/estrela-imagem-animada-0103.gif');
+    background-size: 30px auto; /* Ajusta o tamanho do GIF para caber na div */
+    background-repeat: no-repeat; /* Evita que o GIF se repita */
+    background-position: left center; /* Define a posição do GIF (à esquerda do texto) */
+    padding-left: 45px; /* Adiciona um preenchimento à esquerda para separar o GIF do texto */
 }
 
 
