@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var tempoPausa = 2000; // Tempo de pausa em milissegundos
     var colisoesAsteroides = 0; // Variável para armazenar o número de colisões com asteroides
     var colisoesObjetoAdicional = 0; // Variável para armazenar o número de colisões com objetos adicionais
-    var raioAsteroide = 20; // Raio do asteroide
-    var raioObjetoAdicional = 10; // Raio do objeto adicional
+    var raioAsteroide = 15; // Raio do asteroide
+    var raioObjetoAdicional = 15; // Raio do objeto adicional
     var pontuacao = 0; // Pontuação inicial
 
     // Pré-carregar imagens
@@ -92,19 +92,31 @@ document.addEventListener('DOMContentLoaded', function() {
             var posAsteroideX = parseFloat(asteroide.style.left);
             var posAsteroideY = parseFloat(asteroide.style.top);
 
-            // Calcula a distância entre os centros dos objetos
-            var distanciaX = posX - posAsteroideX;
-            var distanciaY = posY - posAsteroideY;
-            var distanciaCentros = Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
+            // Coordenadas da bounding box do asteroide
+            var asteroideEsquerda = posAsteroideX;
+            var asteroideDireita = posAsteroideX + (2 * raioAsteroide);
+            var asteroideTopo = posAsteroideY;
+            var asteroideFundo = posAsteroideY + (2 * raioAsteroide);
+
+            // Coordenadas da bounding box do objeto principal
+            var objetoEsquerda = posX - raioObjeto;
+            var objetoDireita = posX + raioObjeto;
+            var objetoTopo = posY - raioObjeto;
+            var objetoFundo = posY + raioObjeto;
 
             // Verifica se houve colisão
-            if (distanciaCentros < raioObjeto + raioAsteroide) {
+            if (
+                objetoDireita >= asteroideEsquerda &&
+                objetoEsquerda <= asteroideDireita &&
+                objetoFundo >= asteroideTopo &&
+                objetoTopo <= asteroideFundo
+            ) {
                 var angulo = Math.atan2(posY - posAsteroideY, posX - posAsteroideX);
                 velocidadeX = Math.cos(angulo) * 0.9;
                 velocidadeY = Math.sin(angulo) * 0.9;
                 pausarPrincipal();
                 objeto.style.backgroundImage = 'url(https://media.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif)';
-                objeto.style.border = '2px solid red'; // Adiciona uma borda amarela ao GIF
+
                 // Adiciona efeito piscante ao fundo do GIF
                 var count = 0;
                 var blinkingInterval = setInterval(function() {
@@ -133,6 +145,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+    function pausarJogo() {
+        emMovimento = false; // Parar o movimento do objeto principal
+        objeto.removeEventListener('mouseover', handleMouseOver);
+        objeto.removeEventListener('mouseout', handleMouseOut);
+        objeto.removeEventListener('click', handleClick);
+    }
+
+    function retomarJogo() {
+        emMovimento = true; // Retomar o movimento do objeto principal
+        objeto.addEventListener('mouseover', handleMouseOver);
+        objeto.addEventListener('mouseout', handleMouseOut);
+        objeto.addEventListener('click', handleClick);
+    }
+
     function verificarColisaoObjetoAdicional() {
         var objetosAdicionais = document.getElementsByClassName('objeto-adicional');
         for (var i = 0; i < objetosAdicionais.length; i++) {
@@ -147,23 +173,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 posY + raioObjeto >= posObjetoAdicionalY - raioObjetoAdicional &&
                 posY - raioObjeto <= posObjetoAdicionalY + raioObjetoAdicional
             ) {
-                pausarPrincipal();
+                // Pausa o movimento do objeto principal
+                emMovimento = false;
                 objetoAdicional.style.display = 'none'; // Esconde o objeto adicional
+                // Remove o objeto adicional após a pausa
                 setTimeout(function() {
-                    objetoAdicional.remove(); // Remove o objeto adicional após a pausa
+                    objetoAdicional.remove();
+                    // Verifica se não há mais estrelas na tela
+                    if (document.getElementsByClassName('objeto-adicional').length === 0) {
+                        // Centraliza o objeto principal na tela
+                        posX = larguraTela / 2;
+                        posY = alturaTela / 2;
+                        objeto.style.left = (posX - raioObjeto) + 'px'; // Centraliza horizontalmente
+                        objeto.style.top = (posY - raioObjeto) + 'px'; // Centraliza verticalmente
+
+                        // Exibe a mensagem "Missão concluída!"
+                        var mensagemConcluida = document.createElement('div');
+                        mensagemConcluida.textContent = "Missão concluída!";
+                        mensagemConcluida.className = "mensagem-final";
+                        document.body.appendChild(mensagemConcluida);
+                    }
                 }, tempoPausa);
                 colisoesObjetoAdicional++; // Incrementa o número de colisões com objetos adicionais
-                pontuacao += 15; // Adiciona 5 pontos à pontuação
+                pontuacao += 15; // Adiciona 15 pontos à pontuação
                 atualizarPontuacao(); // Atualiza a pontuação
                 break; // Sai do loop após encontrar a primeira colisão
             }
         }
     }
 
+
+
     // Função para criar os objetos adicionais e os asteroides
     function criarObjetos() {
         // Loop para criar os emojis adicionais
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < 1; i++) {
             var objetoAdicional = document.createElement('div');
             objetoAdicional.className = 'objeto-adicional'; // Classe para estilização
             document.body.appendChild(objetoAdicional);
@@ -200,7 +244,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-
     // Criar o elemento de pontuação
     var pontuacaoElemento = document.createElement('div');
     pontuacaoElemento.textContent = "Pontuação: " + pontuacao;
@@ -210,7 +253,8 @@ document.addEventListener('DOMContentLoaded', function() {
     pontuacaoElemento.style.color = 'white';
     pontuacaoElemento.style.fontSize = '20px';
     document.body.appendChild(pontuacaoElemento);
-
+    // Adiciona a classe ao elemento do score na inicialização
+    pontuacaoElemento.className = 'pontuacao'
     objeto.addEventListener('mouseover', function() {
         objeto.style.border = '2px solid yellow'; // Muda a borda para amarelo
     });
