@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var objeto = document.getElementById('objeto');
     var emMovimento = true; // Variável para controlar o movimento do objeto
     var raioObjeto = 15; // Raio do objeto principal
-    var velocidadeX = 0.9; // Velocidade de movimento horizontal
-    var velocidadeY = 0.9; // Velocidade de movimento vertical
+    var velocidadeX = 2; // Velocidade de movimento horizontal
+    var velocidadeY = 2; // Velocidade de movimento vertical
     var larguraTela = window.innerWidth - 90;
     var alturaTela = window.innerHeight - 95;
     var gifUrls = [
@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var raioAsteroide = 15; // Raio do asteroide
     var raioObjetoAdicional = 15; // Raio do objeto adicional
     var pontuacao = 0; // Pontuação inicial
-
+    var totalObjetosAdicionais = 5; // Total de estrelas a serem coletadas
+    var estrelasColetadas = 0; // Número de estrelas coletadas
+    var mensagemExibida = false; // Variável para rastrear se a mensagem já foi exibida
     // Pré-carregar imagens
     var imagens = [];
     gifUrls.forEach(function(url) {
@@ -63,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             objeto.style.left = posX + 'px';
             objeto.style.top = posY + 'px';
+
+            verificarMissaoConcluida(); // Verifica se a missão foi concluída após cada atualização
         }
     }
 
@@ -112,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 objetoTopo <= asteroideFundo
             ) {
                 var angulo = Math.atan2(posY - posAsteroideY, posX - posAsteroideX);
-                velocidadeX = Math.cos(angulo) * 0.9;
-                velocidadeY = Math.sin(angulo) * 0.9;
+                velocidadeX = Math.cos(angulo) * 2;
+                velocidadeY = Math.sin(angulo) * 2;
                 pausarPrincipal();
                 objeto.style.backgroundImage = 'url(https://media.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif)';
 
@@ -142,17 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
-
-
-
-
-    function retomarJogo() {
-        emMovimento = true; // Retomar o movimento do objeto principal
-        objeto.addEventListener('mouseover', handleMouseOver);
-        objeto.addEventListener('mouseout', handleMouseOut);
-        objeto.addEventListener('click', handleClick);
-    }
     function verificarColisaoObjetoAdicional() {
         var objetosAdicionais = document.getElementsByClassName('objeto-adicional');
         for (var i = 0; i < objetosAdicionais.length; i++) {
@@ -167,66 +160,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 posY + raioObjeto >= posObjetoAdicionalY - raioObjetoAdicional &&
                 posY - raioObjeto <= posObjetoAdicionalY + raioObjetoAdicional
             ) {
-                // Pausa o jogo e exibe a mensagem de missão concluída
+                // Pausa o jogo e remove o objeto adicional após a colisão
                 pausarPrincipal();
-                exibirMensagemConcluida();
+                objetoAdicional.parentNode.removeChild(objetoAdicional);
+                estrelasColetadas++; // Incrementa o número de estrelas coletadas
+                pontuacao += 5; // Adiciona 5 pontos à pontuação
+                atualizarPontuacao(); // Atualiza a pontuação
                 break; // Sai do loop após encontrar a primeira colisão
             }
         }
     }
 
+    function verificarMissaoConcluida() {
+        if (estrelasColetadas === totalObjetosAdicionais) {
+            // Se todas as estrelas foram coletadas, exibe a mensagem de missão concluída
+            pausarPrincipal();
+            exibirMensagemConcluida();
+
+        }
+    }
+
     function exibirMensagemConcluida() {
-        // Centraliza o objeto principal na tela
-        centralizarObjetoPrincipal();
+        // Verifica se a mensagem já foi exibida
+        if (!mensagemExibida) {
+            // Exibe a mensagem "Missão concluída!"
+            var mensagemConcluida = document.createElement('div');
+            mensagemConcluida.textContent = "Missão concluída!";
+            mensagemConcluida.className = "mensagem-final"; // Adiciona a classe CSS
+            // mensagemConcluida.style.position = 'fixed';
+            // mensagemConcluida.style.top = posY + 50 + 'px'; // Exibir abaixo do objeto principal
+            // mensagemConcluida.style.left = '50%';
+            // mensagemConcluida.style.transform = 'translateX(-50%)';
+            // mensagemConcluida.style.fontSize = '30px';
+            // mensagemConcluida.style.color = 'white';
+            document.body.appendChild(mensagemConcluida);
 
-        // Exibe a mensagem "Missão concluída!"
-        var mensagemConcluida = document.createElement('div');
-        mensagemConcluida.textContent = "Missão concluída!";
-        mensagemConcluida.className = "mensagem-final"; // Adiciona a classe CSS
-        mensagemConcluida.style.position = 'fixed';
-        mensagemConcluida.style.top = '50%';
-        mensagemConcluida.style.left = '50%';
-        mensagemConcluida.style.transform = 'translate(-50%, -50%)';
-        mensagemConcluida.style.fontSize = '30px';
-        mensagemConcluida.style.color = 'white';
-        document.body.appendChild(mensagemConcluida);
+            // Define a variável mensagemExibida como true para indicar que a mensagem foi exibida
+            mensagemExibida = true;
+
+            // Pausa completamente o jogo
+            pausarJogo();
+            clearInterval(intervaloAtualizacao);
+        }
     }
-
-    function centralizarObjetoPrincipal() {
-        // Centraliza o objeto principal na tela
-        posX = larguraTela / 2;
-        posY = alturaTela / 2;
-        objeto.style.left = posX + 'px';
-        objeto.style.top = posY + 'px';
-    }
-
     function pausarJogo() {
         emMovimento = false; // Parar o movimento do objeto principal
-        objeto.removeEventListener('mouseover', handleMouseOver);
-        objeto.removeEventListener('mouseout', handleMouseOut);
-        objeto.removeEventListener('click', handleClick);
     }
 
-    function centralizarObjetoPrincipal() {
-        // Centraliza o objeto principal na tela
-        posX = larguraTela / 2;
-        posY = alturaTela / 2;
-        objeto.style.left = posX + 'px';
-        objeto.style.top = posY + 'px';
-    }
-
-    function pausarJogo() {
-        emMovimento = false; // Parar o movimento do objeto principal
-        objeto.removeEventListener('mouseover', handleMouseOver);
-        objeto.removeEventListener('mouseout', handleMouseOut);
-        objeto.removeEventListener('click', handleClick);
-    }
-
-
-    // Função para criar os objetos adicionais e os asteroides
     function criarObjetos() {
         // Loop para criar os emojis adicionais
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < totalObjetosAdicionais; i++) {
             var objetoAdicional = document.createElement('div');
             objetoAdicional.className = 'objeto-adicional'; // Classe para estilização
             document.body.appendChild(objetoAdicional);
@@ -258,9 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function atualizarPontuacao() {
-        pontuacaoElemento.textContent = "Pontos: " + pontuacao;
+        pontuacaoElemento.textContent = "Pontuação: " + pontuacao;
         pontuacaoElemento.className = 'pontuacao'; // Aplicando a classe "pontuacao"
-
     }
 
     // Criar o elemento de pontuação

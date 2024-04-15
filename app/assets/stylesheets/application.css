@@ -60,7 +60,7 @@
     font-size: 18px; /* Define o tamanho da fonte como 18 pixels */
 
     /* Adiciona um GIF de estrela como plano de fundo */
-    background-image: url('https://www.imagensanimadas.com/data/media/280/estrela-imagem-animada-0103.gif');
+    background-image: url('https://media.giphy.com/media/KEexxjxK16lBoE162o/giphy.gif');
     background-size: 30px auto; /* Ajusta o tamanho do GIF para caber na div */
     background-repeat: no-repeat; /* Evita que o GIF se repita */
     background-position: left center; /* Define a posição do GIF (à esquerda do texto) */
@@ -71,9 +71,34 @@
 .mensagem-final {
     font-family: 'Press Start 2P', sans-serif;
     position: fixed;
+    border: 2px solid #fd5252; /* Adiciona uma borda vermelha */
+    padding: 5px; /* Adiciona um preenchimento interno para dar espaço ao texto */
+    background-color: rgba(1, 6, 40, 0.97);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 30px;
     color: white;
+    text-align: center; /* Centraliza o texto horizontalmente */
+
+    /* Adiciona um GIF acima do texto */
+    position: relative; /* Define o posicionamento relativo para permitir posicionamento do pseudo-elemento */
+    padding-top: 100px; /* Espaçamento acima do texto para exibir o GIF */
+}
+
+.mensagem-final::before {
+    content: ""; /* Adiciona um conteúdo vazio antes do texto */
+    display: block; /* Faz com que o conteúdo seja exibido como um bloco */
+    position: absolute; /* Define o posicionamento absoluto para o elemento */
+    top: -100px; /* Posiciona o GIF acima do texto */
+    left: 50%; /* Centraliza o GIF horizontalmente */
+    transform: translateX(-50%); /* Centraliza o GIF horizontalmente */
+    background-image: url('https://media.giphy.com/media/KEexxjxK16lBoE162o/giphy.gif'); /* Define o GIF como plano de fundo */
+    background-size: 250px auto; /* Ajusta o tamanho do GIF para caber na div */
+    background-repeat: no-repeat; /* Evita que o GIF se repita */
+    width: 250px; /* Define a largura do GIF */
+    height: 250px; /* Define a altura do GIF */
+}
+
+
 }
