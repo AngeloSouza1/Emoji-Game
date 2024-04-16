@@ -1,14 +1,14 @@
-# Emoji Games 🎮😀
+# Emoji Game 🎮😀
 
 <div align="justify">
-O Emoji Games é um projeto construído em Rails que explora a integração entre JavaScript e Rails para criar uma interação baseado em emojis.
+O Emoji Game é um projeto construído em Rails que explora a integração entre JavaScript e Rails para criar uma interação baseado em emojis.
 </div>
 
 ### 💻 Sobre o projeto
 ---
 
 <div align="justify">
-O objetivo principal do Emoji Games é fornecer uma coleção de jogos simples e envolventes, todos baseados em emojis. Os jogadores podem desfrutar de uma variedade de jogos, desde quebra-cabeças até jogos de memória, todos integrados em um único ambiente web.
+O objetivo principal do Emoji Game é fornecer uma visão de como é a usabilidade do rails/javascript com temática de jogo.
 
 #### 👁️‍🗨️ Funcionalidades Principais
 
