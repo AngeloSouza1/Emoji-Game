@@ -61,12 +61,6 @@ cd Emoji-Game
 bundle install
 ```
 
-🔹 Execute as migrações do banco de dados:
-
-```bash
-rails db:migrate
-```
-
 🔹 Inicie o servidor Rails:
 ```bash
 rails server
