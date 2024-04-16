@@ -31,15 +31,7 @@ O Emoji Games é desenvolvido utilizando as seguintes tecnologias:
 🔹Video de demonstração
 
 
-
-[Assista a este vídeo sobre sua funcionalidade](/video.mp4)
-
-
-
-
-
-
-[Assista a este vídeo sobre sua funcionalidade](https://github.com/AngeloSouza1/Emoji-Game/public/video)
+[Assista a este vídeo sobre sua funcionalidade](https://github.com/AngeloSouza1/Emoji-Game/raw/main/public/video.mp4)
 
 ---
 
@@ -47,41 +39,42 @@ O Emoji Games é desenvolvido utilizando as seguintes tecnologias:
 ### 📋 Instalação
 Para executar o projeto localmente, siga estas etapas:
 
-Clone este repositório:
+ 🔹 Clone o repositório em sua máquina local.
 
-bash
-Copy code
-git clone https://github.com/seu-usuario/emoji-games.git
-Navegue até o diretório do projeto:
+  ```bash
+git clone https://github.com/AngeloSouza1/Emoji-Game.git
+```
 
-bash
-Copy code
-cd emoji-games
-Instale as dependências do Rails:
+🔹 Navegue até o diretório do projeto:
 
-bash
-Copy code
+```bash
+cd Emoji-Game
+```
+
+🔹 Instale as dependências do Rails:
+
+```bash
 bundle install
-Execute as migrações do banco de dados:
+```
 
-bash
-Copy code
+🔹 Execute as migrações do banco de dados:
+
+```bash
 rails db:migrate
-Inicie o servidor Rails:
+```
 
-bash
-Copy code
+🔹 Inicie o servidor Rails:
+```bash
 rails server
-Acesse o projeto em seu navegador em http://localhost:3000.
+```
 
-🚀 Como jogar
-Ao acessar o projeto, você será recebido com uma lista de jogos disponíveis.
+🔹 Abra seu navegador e acesse a aplicação em http://localhost:3000.
 
-Escolha um jogo da lista e clique para começar a jogar.
 
-Siga as instruções do jogo para jogar e divirta-se!
 
-👁️‍🗨️ Contribuição
+---
+
+### 👁️‍🗨️ Contribuição
 Contribuições são bem-vindas! Se você quiser contribuir para o projeto, siga estas etapas:
 
 🔹 Faça um fork do projeto.
@@ -94,6 +87,7 @@ Contribuições são bem-vindas! Se você quiser contribuir para o projeto, siga
 
 🔹 Envie um pull request.
 
-Licença
-Este projeto é licenciado sob a MIT License.
+---
+###  Licença
+🔹 Este projeto é licenciado sob a MIT License.
 
