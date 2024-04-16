@@ -33,6 +33,9 @@ O Emoji Games é desenvolvido utilizando as seguintes tecnologias:
 
 
 
+[Assista a este vídeo sobre sua funcionalidade](https://github.com/AngeloSouza1/tmp/raw/main/new_recording_-_16_04_2024%2C_09_22_59%20(540p).mp4)
+
+
 
 
 
