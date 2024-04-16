@@ -24,6 +24,21 @@ O Emoji Games é desenvolvido utilizando as seguintes tecnologias:
 
 🔹 JavaScript: Linguagem de programação para adicionar interatividade aos jogos.
 
+
+#### 💡 Veja!
+
+<br>
+🔹Video de demonstração
+
+
+
+
+
+
+
+---
+
+
 ### 📋 Instalação
 Para executar o projeto localmente, siga estas etapas:
 
