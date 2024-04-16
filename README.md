@@ -28,15 +28,9 @@ O Emoji Games é desenvolvido utilizando as seguintes tecnologias:
 #### 💡 Veja!
 
 <br>
-🔹 Video de demonstração
-
-[Assista a este vídeo sobre sua funcionalidade](https://github.com/AngeloSouza1/Emoji-Game/raw/main/public/video.mp4)
-
-
-
-
-
-
+ <a href="https://github.com/AngeloSouza1/Emoji-Game/raw/main/public/video.mp4">
+    <img src="https://img.shields.io/badge/Assista ao video de%20Demonstração-darkgreen" alt="Demonstração">
+  </a>
 
 ---
 
