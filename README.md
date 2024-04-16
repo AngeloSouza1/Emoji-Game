@@ -30,7 +30,7 @@ O Emoji Games é desenvolvido utilizando as seguintes tecnologias:
 <br>
 🔹 Video de demonstração
 
-[Assista a este vídeo sobre sua funcionalidade](https://github.com/AngeloSouza1/Emoji-gamep/assets/video)
+[Assista a este vídeo sobre sua funcionalidade](https://github.com/AngeloSouza1/Emoji-Game/blob/main/public/video.mp4)
 
 
 
